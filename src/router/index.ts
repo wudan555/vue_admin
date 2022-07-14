@@ -7,6 +7,7 @@ import type { RouteRecordRaw } from 'vue-router';
 import localCache from '@/utils/cache';
 import store from '@/store';
 
+
 const Layout = () => import('@/views/layout/index.vue');
 const Login = () => import('@/views/login/Login.vue');
 const Home = () => import('@/views/home/Home.vue');
