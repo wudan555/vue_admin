@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script lang="ts">
+      storage = window.localStorage;
+      function setCache(key, value, expires) {
+        const data = {
+          value: value,
+          curTime: Date.now(),
+          expires: expires
+        };
+        this.storage.setItem(key, JSON.stringify(data));
+      }
+      function getCache(key) {
+        const v = this.storage.getItem(key);
+        console.log(v);
+        if (v) {
+          const jsonv = JSON.parse(v);
+          const oldDate = jsonv.curTime;
+          const expires = jsonv.expires;
+          console.log('expires', expires);
+          if (expires) {
+            console.log(222);
+            const space = Date.now() - oldDate;
+            console.log('space', space);
+            if (space < expires) {
+              return JSON.parse(jsonv.value);
+            } else {
+              this.removeCache(key);
+              return null;
+            }
+          }
+          return jsonv.value;
+        }
+        return null;
+      }
+      function removeCache(key) {
+        this.storage.removeItem(key);
+      }
+      function clearCache() {
+        this.storage.clear();
+        setTimeout(() => {
+          this.storage.clear();
+        }, 1000);
+      }
+      const data = {
+        name: 'name',
+        pwd: 'password'
+      };
+      setCache('test', JSON.stringify(data), 2000);
+      console.log(getCache('test'));
+      setTimeout(() => {
+        console.log(getCache('test'));
+      }, 3000);
+      setTimeout(() => {
+        console.log(getCache('test'));
+      }, 4000);
+    </script>
+  </body>
+</html>

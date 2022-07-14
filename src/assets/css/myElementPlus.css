@@ -1,0 +1,12 @@
+/* --mainColor: #f5f6fa; // 浅灰蓝色
+--shadowBlueColor: #dff9fb; // 浅灰蓝色
+--redColor: #eb4d4b;
+--pinkColor: #ff7979;
+--orangeColor: #ffbe76;
+--blueColor: #2684f7;
+--skyBlueColor: #54a0ff;
+--blackColor: black;
+--greenColor: #6ab04c; */
+:root {
+  --el-text-color-regular: black;
+}
